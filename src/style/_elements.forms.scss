@@ -1,0 +1,25 @@
+button, input {
+  font-family: inherit;
+  font-size: inherit;
+  border-color: #ddd;
+  border-style: solid;
+
+  background-color: inherit;
+  color: inherit;
+}
+
+player-controller::part(button) {
+
+  color: #ddd;
+
+  border-color: #ddd;
+  border-style: solid;
+  border-width: 2px;
+
+  background-color: inherit;
+
+}
+
+player-controller::part(text-button) {
+  color: #ddd;
+}
