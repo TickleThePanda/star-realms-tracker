@@ -1,0 +1,34 @@
+{
+  "name": "star-realms-health-tracker",
+  "version": "0.0.1",
+  "description": "A web based Star Realms health tracker",
+  "main": "npm run build",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp",
+    "watch": "gulp watch",
+    "dev": "npm run build && concurrently --kill-others 'npm run watch' 'http-server site -s -c0'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/TickleThePanda/star-realms-health-tracker.git"
+  },
+  "author": "TickleThePanda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TickleThePanda/star-realms-health-tracker/issues"
+  },
+  "homepage": "https://github.com/TickleThePanda/star-realms-health-tracker#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^4.1.2",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.0.2",
+    "gulp-watch": "^5.0.1",
+    "typescript": "^3.5.3",
+    "browserify": "^16.5.0",
+    "http-server": "^0.11.1",
+    "tsify": "^4.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}

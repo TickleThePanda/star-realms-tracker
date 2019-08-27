@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <title>Star Realms - Authority Tracker</title>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="/main.js"></script>
+    <link href="/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Audiowide&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <template id="player-controller">
+      <style>
+
+        :host {
+
+          padding: 1em;
+
+          display: grid;
+
+          grid-template-areas: "hp h h h hn"
+                               "m  m a p p "
+                               ".  . d . . ";
+
+          grid-template-rows: minmax(min-content, 1fr) min-content minmax(min-content, 1fr);
+          grid-template-columns: 3em 1fr min-content 1fr 3em;
+
+        }
+
+        .current-authority {
+          grid-area: a;
+          justify-self: center;
+          align-self: center;
+
+          font-size: 3em;
+          inline-size: 2em;
+
+          text-align: center;
+
+          padding-top: 0.25em;
+          padding-bottom: 0.25em;
+        }
+
+        .authority-delta {
+          grid-area: d;
+          justify-self: center;
+          align-self: flex-start;
+        }
+
+        button {
+          
+          appearance: none;
+
+          font-size: 1.5em;
+
+          block-size: 2em;
+          inline-size: 2em;
+
+          margin: 0;
+          padding: 0;
+          border: none;
+
+          background-color: unset;
+        }
+
+        .history-button {
+          display: block; /* block so that the browser doesn't hide it */
+          align-self: end;
+          margin-bottom: 0;
+
+          width: 1em;
+          height: 1em;
+          font-size: 3em;
+          
+          opacity: 0.5;
+        }
+        
+        .history-button--previous {
+          grid-area: hp;
+        }
+
+        .history-button--next {
+          grid-area: hn;
+        }
+
+        .authority-button {
+
+          border: 1px solid #000;
+          border-radius: 50%;
+
+          align-self: center;
+
+        }
+
+        .authority-button--decrease {
+          grid-area: m;
+          justify-self: end;
+        }
+
+        .authority-button--increase {
+          grid-area: p;
+          justify-self: start;
+        }
+
+        .history {
+          grid-area: h;
+          margin: 0;
+          padding: 0;
+
+          overflow: hidden;
+          display: flex;
+          flex-direction: row;
+
+          align-content: flex-end;
+          align-self: end;
+
+          opacity: 0.5;
+          
+        }
+
+        .overlay {
+          grid-area: h;
+          background-image: linear-gradient(to right, 
+              rgba(68,68,68,1) 0%,
+              rgba(68,68,68,0) 35%,
+              rgba(68,68,68,0) 65%,
+              rgba(68,68,68,1) 100%
+          );
+          z-index: 1;
+          height: 3em;
+          align-self: end;
+        }
+
+        .history::after, .history::before {
+          display: block;
+          content: "";
+          min-width: 50%;
+        }
+
+        [hidden] {
+          display: none;
+        }
+
+      </style>
+      <button part="text-button" class="history-button history-button--previous" id="history-prev" aria-label="Focus previous turn">←</button>
+      <button part="text-button" class="history-button history-button--next" id="history-next" aria-label="Focus next turn">→</button>
+      <ol class="history" id="history" hidden></ol>
+      <div class="overlay"></div>
+      <data class="current-authority" id="authority"></data>
+      <data class="authority-delta" id="authority-delta"></data>
+      <button part="button" class="authority-button authority-button--decrease" id="decrease-authority" aria-label="Decrease authority">−</button>
+      <button part="button" class="authority-button authority-button--increase" id="increase-authority" aria-label="Increase authority">+</button>
+    </template>
+
+    <template id="player-history">
+      <style>
+      
+        :host {
+          display: grid;
+          grid-template-areas: "d" 
+                               "a";
+          justify-items: center;
+          align-content: center;
+
+          padding-left: 0.5em;
+          padding-right: 0.5em;
+        }
+
+        .authority {
+          grid-area: a;
+          text-align: center;
+          font-size: 1.4em;
+          height: 1em;
+        }
+
+        .delta {
+          grid-area: d;
+          text-align: center;
+          height: 1em;
+        }
+
+        [hidden] {
+          display: none;
+        }
+
+      </style>
+      <data class="delta" id="authority-delta"></data>
+      <data class="authority" id="authority"></data>
+    </template>
+
+    <div class="wrapper">
+      <article id="page__start" class="page page__start">
+        <form id="start-form">
+          <label for="start-form__players">Players</label>
+          <input type="number" id="start-form__players" value="2" name="players">
+
+          <label for="start-form__authority">Authority</label>
+          <input type="number" id="start-form__authority" value="50" name="authority">
+
+          <button id="start-form__new-game">Start new game</button>
+        </form>
+      </article>
+
+      <article id="page__game" class="page page__game" hidden >
+        <menu class="full-menu">
+          <button id="in-game-menu__new-game">Start new game</button>
+          <button id="in-game-menu__rematch">Rematch</button>
+        </menu>
+        <menu class="turn-menu">
+          <button id="turn-menu__toggle-history" class="turn-menu__toggle-history">Show history</button>
+          <button id="turn-menu__complete-turn" class="turn-menu__complete-turn" hidden>Done</button>
+        </menu>
+        <ol class="player-grid" id="players-list">
+        </ol>
+      </article>
+    </div>    
+  </body>
+</html>
+
