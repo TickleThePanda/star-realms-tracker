@@ -4,8 +4,14 @@ button, input {
   border-color: #ddd;
   border-style: solid;
 
+  padding: 0.5em;
+
   background-color: inherit;
   color: inherit;
+}
+
+button {
+  border-radius: 0.8em;
 }
 
 player-controller::part(button) {
@@ -17,7 +23,7 @@ player-controller::part(button) {
   border-width: 2px;
 
   background-color: inherit;
-
+  
 }
 
 player-controller::part(text-button) {

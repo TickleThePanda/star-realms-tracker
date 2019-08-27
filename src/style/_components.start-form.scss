@@ -1,0 +1,20 @@
+.page__start {
+  display: grid;
+}
+
+.start-form {
+  display: grid;
+  margin: auto;
+}
+
+.start-form {
+  label {
+    margin-top: 1em;
+  }
+  input {
+    margin-top: 0.5em;
+  }
+  button {
+    margin-top: 2em;
+  }
+}
