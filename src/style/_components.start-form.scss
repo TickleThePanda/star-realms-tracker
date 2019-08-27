@@ -1,10 +1,12 @@
 .page__start {
   display: grid;
+  grid-template-rows: min-content auto;
 }
 
 .start-form {
   display: grid;
   margin: auto;
+  margin-top: 0;
 }
 
 .start-form {
@@ -17,4 +19,13 @@
   button {
     margin-top: 2em;
   }
+}
+
+h1 {
+  text-align: center;
+  place-self: center;
+
+  font-size: 1.5em;
+
+  margin: 1em;
 }
