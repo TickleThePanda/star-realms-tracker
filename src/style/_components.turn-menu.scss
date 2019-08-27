@@ -1,11 +1,15 @@
-.turn-menu__complete-turn {
+.turn-menu__button {
+  z-index: $z-index--buttons;
+}
+
+.turn-menu__button--complete-turn {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.turn-menu__toggle-history {
+.turn-menu__button--toggle-history {
   position: absolute;
   top: 0;
   left: 50%;

@@ -8,8 +8,7 @@
 
   display: grid;
 
-
-  z-index: -1;
+  z-index: $z-index--players;
 }
 
 .player-grid[data-n-players='3'], .player-grid[data-n-players='4'] {

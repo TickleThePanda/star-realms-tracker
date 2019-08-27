@@ -145,8 +145,16 @@
         }
 
       </style>
-      <button part="text-button" class="history-button history-button--previous" id="history-prev" aria-label="Focus previous turn">←</button>
-      <button part="text-button" class="history-button history-button--next" id="history-next" aria-label="Focus next turn">→</button>
+      <button part="text-button" 
+        class="history-button history-button--previous"
+        id="history-prev" aria-label="Focus previous turn">
+        ←
+      </button>
+      <button part="text-button"
+        class="history-button history-button--next"
+        id="history-next" aria-label="Focus next turn">
+        →
+      </button>
       <ol class="history" id="history" hidden></ol>
       <div class="overlay"></div>
       <data class="current-authority" id="authority"></data>
@@ -204,14 +212,29 @@
         </form>
       </article>
 
-      <article id="page__game" class="page page__game" hidden >
-        <menu class="full-menu">
-          <button id="in-game-menu__new-game">Start new game</button>
-          <button id="in-game-menu__rematch">Rematch</button>
+      <article id="page__game" class="page page__game" hidden>
+        
+        <button id="menu-toggle--in-game-menu" class="button--menu-toggle" aria-label="toggle-menu">☰</button>
+
+        <menu id="in-game-menu" class="in-game-menu" hidden>
+          <button id="in-game-menu__new-game" 
+              class="in-game-menu__button in-game-menu__button--new-game">
+            Start new game
+          </button>
+          <button id="in-game-menu__rematch"
+              class="in-game-menu__button in-game-menu__button--rematch">
+            Rematch
+          </button>
         </menu>
         <menu class="turn-menu">
-          <button id="turn-menu__toggle-history" class="turn-menu__toggle-history">Show history</button>
-          <button id="turn-menu__complete-turn" class="turn-menu__complete-turn" hidden>Done</button>
+          <button id="turn-menu__toggle-history"
+              class="turn-menu__button turn-menu__button--toggle-history">
+            Show history
+          </button>
+          <button id="turn-menu__complete-turn"
+              class="turn-menu__button turn-menu__button--complete-turn" hidden>
+            Done
+          </button>
         </menu>
         <ol class="player-grid" id="players-list">
         </ol>
