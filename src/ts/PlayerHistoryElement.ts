@@ -19,6 +19,8 @@ export class PlayerHistoryElement extends HTMLElement {
     const element = this.shadowRoot.querySelector('#authority-delta');
 
     if (authority === 0) {
+      element.classList.remove('increase');
+      element.classList.remove('decrease');
       return;
     } else if (authority > 0) {
       element.innerHTML = "+" + authority.toString();

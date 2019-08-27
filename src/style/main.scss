@@ -12,4 +12,8 @@
 @import '_components.in-game-menu';
 @import '_components.start-form';
 
+player-controller::part(increase) {
+  color: #ff0000;
+}
+
 @import '_utils.hidden';

@@ -44,6 +44,8 @@ export class PlayerControllerElement extends HTMLElement {
     if (currentValue !== newValue) {
       element.innerHTML = newValue;
       if (authority === 0) {
+        element.classList.remove('increase');
+        element.classList.remove('decrease');
         return;
       } else if (authority > 0) {
         element.innerHTML = "+" + newValue;
