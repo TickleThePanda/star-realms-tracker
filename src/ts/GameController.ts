@@ -14,6 +14,7 @@ export class GameController {
 
   private renderedTurns: Turn[] = [];
   private turnHistoryIndex = 0;
+  private triggerHistoryUpdate = false;
   private historyHiddenPrev = undefined;
   private historyHidden = true;
 
@@ -23,7 +24,7 @@ export class GameController {
     const gameController = this;
 
     this._game = game;
-    
+
     while (this.PLAYER_CONTAINER.hasChildNodes()) {
       this.PLAYER_CONTAINER.removeChild(this.PLAYER_CONTAINER.lastChild);
     }
@@ -60,6 +61,10 @@ export class GameController {
     this.HISTORY_TOGGLE_BUTTON.addEventListener('click', () => {
       this.historyHidden = !this.historyHidden;
     });
+
+    window.addEventListener('resize', () => {
+      this.triggerHistoryUpdate = true;
+    })
   }
   updateView() {
 
@@ -92,7 +97,7 @@ export class GameController {
       this.NEXT_TURN_BUTTON.hidden = true;
     }
 
-    if (this.historyHiddenPrev !== this.historyHidden) {
+    if (this.historyHiddenPrev !== this.historyHidden || this.triggerHistoryUpdate) {
       for (let i = 0; i < this._game.nPlayers; i++) {
         const element: PlayerControllerElement = this._playerElements[i];
         element.historyHidden = this.historyHidden;
@@ -104,6 +109,7 @@ export class GameController {
         this.HISTORY_TOGGLE_BUTTON.innerHTML = 'Hide history';
       }
       this.historyHiddenPrev = this.historyHidden;
+      this.triggerHistoryUpdate = false;
     }
 
     for (let i = 0; i < this._game.nPlayers; i++) {
