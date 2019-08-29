@@ -20,6 +20,8 @@ window.addEventListener('load', async () => {
   let game: Game = null;
   let controller: GameController = null;
 
+  START_PAGE.hidden = false;
+
   document.getElementById('start-form__new-game').addEventListener('click', event => {
     const newGameForm = <HTMLFormElement> document.getElementById('start-form');
     const players = parseInt(newGameForm.elements["players"].value);
