@@ -51,7 +51,7 @@
         }
 
         button {
-          
+
           appearance: none;
 
           font-size: 1.5em;
@@ -74,10 +74,10 @@
           width: 1em;
           height: 1em;
           font-size: 3em;
-          
+
           opacity: 0.5;
         }
-        
+
         .history-button--previous {
           grid-area: hp;
         }
@@ -118,20 +118,21 @@
           align-self: end;
 
           opacity: 0.8;
-          
-        }
 
-        .overlay {
-          grid-area: h;
-          background-image: linear-gradient(to right, 
-              rgba(68,68,68,1) 0%,
-              rgba(68,68,68,0) 35%,
-              rgba(68,68,68,0) 65%,
-              rgba(68,68,68,1) 100%
+          -webkit-mask-image: linear-gradient(to right,
+              transparent 0%,
+              black 35%,
+              black 65%,
+              transparent 100%
           );
-          z-index: 1;
-          height: 3em;
-          align-self: end;
+          mask-image: linear-gradient(to right,
+              transparent 0%,
+              black 35%,
+              black 65%,
+              transparent 100%
+          );
+
+
         }
 
         .history::after, .history::before {
@@ -139,7 +140,7 @@
           content: "";
           min-width: 50%;
         }
-        
+
         .increase {
           color: var(--recovery-color);
         }
@@ -153,7 +154,7 @@
         }
 
       </style>
-      <button part="text-button" 
+      <button part="text-button"
         class="history-button history-button--previous"
         id="history-prev" aria-label="Focus previous turn">
         ←
@@ -164,7 +165,6 @@
         →
       </button>
       <ol class="history" id="history" hidden></ol>
-      <div class="overlay"></div>
       <data class="current-authority" id="authority"></data>
       <data class="authority-delta" id="authority-delta"></data>
       <button part="button" class="authority-button authority-button--decrease" id="decrease-authority" aria-label="Decrease authority">−</button>
@@ -173,10 +173,10 @@
 
     <template id="player-history">
       <style>
-      
+
         :host {
           display: grid;
-          grid-template-areas: "d" 
+          grid-template-areas: "d"
                                "a";
           justify-items: center;
           align-content: center;
@@ -233,7 +233,7 @@
         <button id="menu-toggle--in-game-menu" class="button--menu-toggle" aria-label="toggle-menu">☰</button>
 
         <menu id="in-game-menu" class="in-game-menu" hidden>
-          <button id="in-game-menu__new-game" 
+          <button id="in-game-menu__new-game"
               class="in-game-menu__button in-game-menu__button--new-game">
             Start new game
           </button>
@@ -255,7 +255,6 @@
         <ol class="player-grid" id="players-list">
         </ol>
       </article>
-    </div>    
+    </div>
   </body>
 </html>
-
