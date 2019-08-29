@@ -4,4 +4,4 @@
   command = "npm run build"
 
 [build.environment]
-  GIT_LFS_ENABLED = true
+  GIT_LFS_ENABLED = "true"
