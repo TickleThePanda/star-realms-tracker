@@ -26,7 +26,7 @@ function js() {
 }
 
 function images() {
-  return src('src/images/*.{png,jpg}')
+  return src('src/images/*.{png,jpg,webp}')
     .pipe(dest('site/images'));
 }
 
@@ -34,7 +34,7 @@ function watchFiles() {
   watch('./src/view/*.html', html);
   watch('./src/style/*.scss', css);
   watch('./src/ts/*.ts', js);
-  watch('./src/images/*.{png,jpg}', images);
+  watch('./src/images/*.{png,jpg,webp}', images);
 }
 
 exports.default = parallel(html, css, js, images);

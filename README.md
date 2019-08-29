@@ -5,7 +5,7 @@
 See LICENCE for the licensing for this software.
 
 There are some exceptions of files covered this licence:
- - `src/images/galaxy-background.png` where you can find the
+ - `src/images/galaxy-background.{jpg,webp}` where you can find the
    licence for this at `src/images/galaxy-background.png.LICENSE`
 
 ## Credits
