@@ -69,6 +69,7 @@
           border: none;
 
           background-color: unset;
+          color: var(--border-text-color);
         }
 
         .history-button {
@@ -93,7 +94,7 @@
 
         .authority-button {
 
-          border: 1px solid #000;
+          border: var(--button-border-color) var(--button-border-style) var(--button-border-width);
           border-radius: 50%;
 
           align-self: center;
@@ -159,21 +160,19 @@
         }
 
       </style>
-      <button part="text-button"
-        class="history-button history-button--previous"
+      <button class="history-button history-button--previous"
         id="history-prev" aria-label="Focus previous turn">
         ←
       </button>
-      <button part="text-button"
-        class="history-button history-button--next"
+      <button class="history-button history-button--next"
         id="history-next" aria-label="Focus next turn">
         →
       </button>
       <ol class="history" id="history" hidden></ol>
       <data class="current-authority" id="authority"></data>
       <data class="authority-delta" id="authority-delta"></data>
-      <button part="button" class="authority-button authority-button--decrease" id="decrease-authority" aria-label="Decrease authority">−</button>
-      <button part="button" class="authority-button authority-button--increase" id="increase-authority" aria-label="Increase authority">+</button>
+      <button class="authority-button authority-button--decrease" id="decrease-authority" aria-label="Decrease authority">−</button>
+      <button class="authority-button authority-button--increase" id="increase-authority" aria-label="Increase authority">+</button>
     </template>
 
     <template id="player-history">

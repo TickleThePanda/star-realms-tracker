@@ -1,30 +1,26 @@
+:root {
+  --button-background-color: #483542;
+
+  --button-border-color: #ddd;
+  --button-border-width: 0.15em;
+  --button-border-style: solid;
+
+  --button-text-color: inherit;
+}
+
 button, input {
   font-family: inherit;
   font-size: inherit;
-  border-color: #ddd;
-  border-style: solid;
+  border-color: var(--button-border-color);
+  border-style: var(--button-border-style);
+  border-width: var(--button-border-width);
 
   padding: 0.5em;
 
-  background-color: #483542;
-  color: inherit;
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
 }
 
 button {
   border-radius: 0.8em;
-  border-width: 0.15em;
-}
-
-player-controller::part(button) {
-
-  color: #ddd;
-
-  border-color: #ddd;
-  border-style: solid;
-  border-width: 2px;
-
-}
-
-player-controller::part(text-button) {
-  color: #ddd;
 }
