@@ -1,2 +1,7 @@
+[build]
+  base = "./"
+  publish = "site/"
+  command = "npm run build"
+
 [build.environment]
   GIT_LFS_ENABLED = true
