@@ -25,12 +25,17 @@ function js() {
     .pipe(dest('site'));
 }
 
+function images() {
+  return src('src/images/*.{png,jpg}')
+    .pipe(dest('site/images'));
+}
+
 function watchFiles() {
   watch('./src/view/*.html', html);
   watch('./src/style/*.scss', css);
   watch('./src/ts/*.ts', js);
+  watch('./src/images/*.{png,jpg}', images);
 }
 
-exports.default = parallel(html, css, js);
+exports.default = parallel(html, css, js, images);
 exports.watch = watchFiles;
-
