@@ -14,7 +14,7 @@ window.addEventListener('load', async () => {
 
   const IN_GAME_MENU: HTMLElement = document.getElementById('in-game-menu');
 
-  const IN_GAME_MENU_TOGGLE_BUTTON: HTMLElement 
+  const IN_GAME_MENU_TOGGLE_BUTTON: HTMLElement
       = document.getElementById('menu-toggle--in-game-menu');
 
   let game: Game = null;
@@ -24,7 +24,7 @@ window.addEventListener('load', async () => {
     const newGameForm = <HTMLFormElement> document.getElementById('start-form');
     const players = parseInt(newGameForm.elements["players"].value);
     const authority = parseInt(newGameForm.elements["authority"].value);
-    
+
     game = new Game(players, authority);
 
     controller = new GameController(game);
@@ -52,4 +52,3 @@ window.addEventListener('load', async () => {
   });
 
 });
-
