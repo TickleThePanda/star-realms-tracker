@@ -13,6 +13,18 @@ html {
   overflow-y: hidden;
 }
 
+/*
+ * This is to make sure the font size scales
+ * reasonably at smaller widths and heights
+ * but so that it also scales reasonably at
+ * larger sizes.
+ */
+@media (min-aspect-ratio: 2/1), (max-aspect-ratio: 1/2) {
+  html {
+    font-size: 5.4vmin;
+  }
+}
+
 body {
   width: 100%;
   height: 100vh;
