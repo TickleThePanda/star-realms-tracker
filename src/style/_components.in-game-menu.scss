@@ -2,7 +2,7 @@
 
   box-sizing: content-box;
 
-  position: relative;
+  position: absolute;
   z-index: $z-index--above-modal-buttons;
   left: 1em;
   top: 1em;
@@ -49,4 +49,25 @@
       align-self: start;
     }
   }
+}
+
+.button--full-screen-toggle {
+
+  box-sizing: content-box;
+
+  position: absolute;
+  right: 1em;
+  top: 1em;
+
+  font-size: 0.8rem;
+
+  padding: 0.5em;
+
+  width: 1.5em;
+  height: 1.5em;
+
+  border: none;
+  background-color: unset;
+
+  z-index: $z-index--above-modal-buttons;
 }

@@ -4,6 +4,7 @@ import { PlayerControllerElement } from './PlayerControllerElement';
 import { PlayerHistoryElement } from './PlayerHistoryElement';
 
 import { GameController } from './GameController';
+import { visitFunctionBody } from 'typescript';
 
 window.customElements.define('player-controller', PlayerControllerElement);
 window.customElements.define('player-history', PlayerHistoryElement);
@@ -16,6 +17,9 @@ window.addEventListener('load', async () => {
 
   const IN_GAME_MENU_TOGGLE_BUTTON: HTMLElement
       = document.getElementById('menu-toggle--in-game-menu');
+
+  const FULL_SCREEN_ACTIVATION_BUTTON: HTMLElement
+      = document.getElementById('full-screen--activate');
 
   let game: Game = null;
   let controller: GameController = null;
@@ -52,5 +56,24 @@ window.addEventListener('load', async () => {
   IN_GAME_MENU_TOGGLE_BUTTON.addEventListener('click', event => {
     IN_GAME_MENU.hidden = !IN_GAME_MENU.hidden;
   });
+
+  if (document.fullscreenEnabled) {
+
+    if (document.fullscreenElement !== null) {
+      FULL_SCREEN_ACTIVATION_BUTTON.hidden = true;
+    }
+
+    document.addEventListener('fullscreenchange', event => {
+      FULL_SCREEN_ACTIVATION_BUTTON.hidden = document.fullscreenElement !== null;
+    });
+
+    FULL_SCREEN_ACTIVATION_BUTTON.addEventListener('click', event => {
+      document.body.requestFullscreen();
+    });
+
+  } else {
+    FULL_SCREEN_ACTIVATION_BUTTON.hidden = true;
+  }
+
 
 });

@@ -35,9 +35,7 @@ body {
   overflow-y: hidden;
 
   background-color: #483542;
-  background-image: url('/images/galaxy-background.jpg');
-  background-position: center;
-  background-size: cover;
+
   color: #ddd;
 }
 
@@ -50,5 +48,13 @@ body {
   overflow-x: hidden;
   overflow-y: hidden;
 
-  background-color: rgba(0, 0, 0, 0.4);
+  /*
+   * We need these on the wrapper to make fullscreen images
+   * easier.
+   */
+  background-color: #483542;
+  background-image: url('/images/galaxy-background.jpg');
+  background-position: center;
+  background-size: cover;
+
 }
