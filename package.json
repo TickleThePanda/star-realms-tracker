@@ -21,14 +21,15 @@
   "homepage": "https://github.com/TickleThePanda/star-realms-health-tracker#readme",
   "dependencies": {},
   "devDependencies": {
+    "browserify": "^16.5.0",
     "concurrently": "^4.1.2",
     "gulp": "^4.0.2",
+    "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-watch": "^5.0.1",
-    "typescript": "^3.5.3",
-    "browserify": "^16.5.0",
     "http-server": "^0.11.1",
     "tsify": "^4.0.1",
+    "typescript": "^3.5.3",
     "vinyl-source-stream": "^2.0.0"
   }
 }
