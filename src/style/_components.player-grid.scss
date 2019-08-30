@@ -9,6 +9,8 @@
   display: grid;
 
   z-index: $z-index--players;
+
+  padding: 1.5em;
 }
 
 .player-grid[data-n-players='3'], .player-grid[data-n-players='4'] {
