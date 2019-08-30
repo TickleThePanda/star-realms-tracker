@@ -77,9 +77,8 @@
           align-self: end;
           margin-bottom: 0;
 
-          width: 1em;
-          height: 1em;
-          font-size: 3em;
+          font-size: 1em;
+          padding: 0.25em;
 
           opacity: 0.8;
         }
@@ -94,8 +93,8 @@
 
         .authority-button {
 
-          border: var(--button-border-color) var(--button-border-style) var(--button-border-width);
-          border-radius: 50%;
+          font-size: 1em;
+          padding: 0.25em;
 
           align-self: center;
 
@@ -162,17 +161,39 @@
       </style>
       <button class="history-button history-button--previous"
         id="history-prev" aria-label="Focus previous turn">
-        ←
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20">
+          <path fill="currentColor" d="M14,2 l-8,8 l8,8 Z" />
+        </svg>
       </button>
       <button class="history-button history-button--next"
         id="history-next" aria-label="Focus next turn">
-        →
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20">
+          <path fill="currentColor" d="M6,2 l8,8 l-8,8 Z" />
+        </svg>
       </button>
       <ol class="history" id="history" hidden></ol>
       <data class="current-authority" id="authority"></data>
       <data class="authority-delta" id="authority-delta"></data>
-      <button class="authority-button authority-button--decrease" id="decrease-authority" aria-label="Decrease authority">−</button>
-      <button class="authority-button authority-button--increase" id="increase-authority" aria-label="Increase authority">+</button>
+      <button class="authority-button authority-button--decrease" id="decrease-authority" aria-label="Decrease authority">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20">
+          <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path fill="currentColor" d="M7,9 h6 v2 h-6 Z" />
+        </svg>
+      </button>
+      <button class="authority-button authority-button--increase" id="increase-authority" aria-label="Increase authority">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20">
+          <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path fill="currentColor" d="M9,7 h2 v2 h2 v2 h-2 v2 h-2 v-2 h-2 v-2 h2 Z" />
+        </svg>
+      </button>
     </template>
 
     <template id="player-history">
