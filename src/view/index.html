@@ -26,22 +26,35 @@
 
           display: grid;
 
-          grid-template-areas: "hp h h h hn"
-                               "m  m a p p "
-                               ".  . d . . ";
+          grid-template-areas: "h"
+                               "a"
+                               "d";
 
           grid-template-rows: minmax(min-content, 1fr) min-content minmax(min-content, 1fr);
-          grid-template-columns: 3em 1fr min-content 1fr 3em;
+
+        }
+
+        .authority-controls {
+          grid-area: a;
+          display: flex;
+          justify-self: center;
+        }
+
+        .authority-button {
+
+          font-size: 1em;
+          padding: 0.25em;
+
+          align-self: center;
 
         }
 
         .current-authority {
-          grid-area: a;
           justify-self: center;
           align-self: center;
 
           font-size: 3em;
-          inline-size: 2em;
+          min-inline-size: 2.3em;
 
           text-align: center;
 
@@ -72,6 +85,20 @@
           color: var(--border-text-color);
         }
 
+        .history-controls {
+          grid-area: h;
+          display: grid;
+
+          grid-template-columns: 3em 1fr 3em;
+          grid-template-areas: "hm hist hp";
+
+          width: 15em;
+          max-width: 100%;
+
+          align-self: end;
+          justify-self: center;
+        }
+
         .history-button {
           display: block; /* block so that the browser doesn't hide it */
           align-self: end;
@@ -83,35 +110,18 @@
           opacity: 0.8;
         }
 
-        .history-button--previous {
-          grid-area: hp;
-        }
-
         .history-button--next {
           grid-area: hn;
         }
 
-        .authority-button {
-
-          font-size: 1em;
-          padding: 0.25em;
-
-          align-self: center;
-
-        }
-
-        .authority-button--decrease {
-          grid-area: m;
-          justify-self: end;
-        }
-
-        .authority-button--increase {
-          grid-area: p;
-          justify-self: start;
+        .history-button--next {
+          grid-area: hp;
         }
 
         .history {
-          grid-area: h;
+
+          grid-area: hist;
+
           margin: 0;
           padding: 0;
 
@@ -159,41 +169,47 @@
         }
 
       </style>
-      <button class="history-button history-button--previous"
-        id="history-prev" aria-label="Focus previous turn">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20">
-          <path fill="currentColor" d="M14,2 l-8,8 l8,8 Z" />
-        </svg>
-      </button>
-      <button class="history-button history-button--next"
-        id="history-next" aria-label="Focus next turn">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20">
-          <path fill="currentColor" d="M6,2 l8,8 l-8,8 Z" />
-        </svg>
-      </button>
-      <ol class="history" id="history" hidden></ol>
-      <data class="current-authority" id="authority"></data>
+      <div class="history-controls">
+        <button class="history-button history-button--previous"
+          id="history-prev" aria-label="Focus previous turn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20">
+            <path fill="currentColor" d="M14,2 l-8,8 l8,8 Z" />
+          </svg>
+        </button>
+        <ol class="history" id="history" hidden></ol>
+        <button class="history-button history-button--next"
+          id="history-next" aria-label="Focus next turn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20">
+            <path fill="currentColor" d="M6,2 l8,8 l-8,8 Z" />
+          </svg>
+        </button>
+      </div>
+      <div class= "authority-controls">
+        <button class="authority-button authority-button--decrease" id="decrease-authority" aria-label="Decrease authority">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20">
+            <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path fill="currentColor" d="M7,9 h6 v2 h-6 Z" />
+          </svg>
+        </button>
+
+        <data class="current-authority" id="authority"></data>
+
+        <button class="authority-button authority-button--increase" id="increase-authority" aria-label="Increase authority">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20">
+            <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path fill="currentColor" d="M9,7 h2 v2 h2 v2 h-2 v2 h-2 v-2 h-2 v-2 h2 Z" />
+          </svg>
+        </button>
+      </div>
       <data class="authority-delta" id="authority-delta"></data>
-      <button class="authority-button authority-button--decrease" id="decrease-authority" aria-label="Decrease authority">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20">
-          <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
-          <path fill="currentColor" d="M7,9 h6 v2 h-6 Z" />
-        </svg>
-      </button>
-      <button class="authority-button authority-button--increase" id="increase-authority" aria-label="Increase authority">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20">
-          <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
-          <path fill="currentColor" d="M9,7 h2 v2 h2 v2 h-2 v2 h-2 v-2 h-2 v-2 h2 Z" />
-        </svg>
-      </button>
     </template>
 
     <template id="player-history">
