@@ -1,0 +1,16 @@
+{
+  "short_name": "Star Realms Tracker",
+  "name": "Star Realms Authority Tracker",
+  "icons": [
+    {
+      "src": "/images/simple-icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#483542",
+  "theme_color": "#483542"
+}

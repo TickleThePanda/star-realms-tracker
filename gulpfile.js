@@ -44,13 +44,19 @@ function images() {
     .pipe(dest('site/images'));
 }
 
+function manifest() {
+  return src('src/manifest/manifest.json')
+    .pipe(dest('site'));
+}
+
 function watchFiles() {
   watch('./src/view/*.html', html);
   watch('./src/style/*.scss', css);
   watch('./src/ts/*.ts', js);
   watch('./src/sw/sw.js', sw);
   watch('./src/images/*.{png,jpg,webp}', images);
+  watch('./src/manifest/manifest.json', manifest);
 }
 
-exports.default = parallel(html, css, js, sw, images);
+exports.default = parallel(html, css, js, sw, images, manifest);
 exports.watch = watchFiles;
