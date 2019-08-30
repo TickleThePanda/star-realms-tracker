@@ -24,3 +24,7 @@ button, input {
 button {
   border-radius: 0.8em;
 }
+
+.button--primary {
+  background-color: var(--primary-action-color);
+}
