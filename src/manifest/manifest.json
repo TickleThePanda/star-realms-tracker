@@ -8,7 +8,7 @@
       "sizes": "192x192"
     }
   ],
-  "start_url": "/",
+  "start_url": "/?mode=standalone",
   "scope": "/",
   "display": "fullscreen",
   "background_color": "#483542",

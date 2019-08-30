@@ -21,6 +21,8 @@ window.addEventListener('load', async () => {
   const FULL_SCREEN_ACTIVATION_BUTTON: HTMLElement
       = document.getElementById('full-screen--activate');
 
+  const SEARCH_PARAMS = new URLSearchParams(location.search);
+
   let game: Game = null;
   let controller: GameController = null;
 
@@ -57,7 +59,7 @@ window.addEventListener('load', async () => {
     IN_GAME_MENU.hidden = !IN_GAME_MENU.hidden;
   });
 
-  if (document.fullscreenEnabled) {
+  if (document.fullscreenEnabled && SEARCH_PARAMS.get('mode') !== 'standalone') {
 
     if (document.fullscreenElement !== null) {
       FULL_SCREEN_ACTIVATION_BUTTON.hidden = true;
