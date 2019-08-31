@@ -5,9 +5,11 @@
   --primary-action-color: #7b1d1d;
 }
 
+$font-size-multiplier: 2.3;
+
 html {
   font-family: Audiowide, sans-serif;
-  font-size: 1.8vmax;
+  font-size: $font-size-multiplier * 1vmax;
 
   overflow-x: hidden;
   overflow-y: hidden;
@@ -21,7 +23,7 @@ html {
  */
 @media (min-aspect-ratio: 2/1), (max-aspect-ratio: 1/2) {
   html {
-    font-size: 3.6vmin;
+    font-size: $font-size-multiplier * 2vmin;
   }
 }
 
