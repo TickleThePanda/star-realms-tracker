@@ -50,11 +50,11 @@ function manifest() {
 }
 
 function watchFiles() {
-  watch('./src/view/*.html', html);
-  watch('./src/style/*.scss', css);
-  watch('./src/ts/*.ts', js);
+  watch('./src/view/*.html', parallel(html, sw));
+  watch('./src/style/*.scss', parallel(css, sw));
+  watch('./src/ts/*.ts', parallel(js, sw));
   watch('./src/sw/sw.js', sw);
-  watch('./src/images/*.{png,jpg,webp}', images);
+  watch('./src/images/*.{png,jpg,webp}', parallel(images, sw));
   watch('./src/manifest/manifest.json', manifest);
 }
 
