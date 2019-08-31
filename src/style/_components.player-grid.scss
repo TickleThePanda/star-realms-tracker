@@ -8,9 +8,15 @@
 
   display: grid;
 
+  grid-gap: 1em;
+
   z-index: $z-index--players;
 
   padding: 1em;
+  padding-top: 3em;
+  padding-bottom: 3em;
+
+  font-size: 1.5em;
 }
 
 .player-grid[data-n-players='3'], .player-grid[data-n-players='4'] {
@@ -45,13 +51,13 @@
 }
 
 .player-grid[data-n-players='2'] {
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
 .player-grid[data-n-players='3'], .player-grid[data-n-players='4'] {
-  font-size: 0.75rem;
+  font-size: 1.125rem;
 }
 
 .player-grid[data-n-players='5'], .player-grid[data-n-players='6'] {
-  font-size: 0.666rem;
+  font-size: 1rem;
 }

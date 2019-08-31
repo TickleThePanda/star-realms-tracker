@@ -8,17 +8,13 @@
   left: 50%;
   transform: translateX(-50%);
 
-  font-size: 1.2em;
-
   background-color: var(--primary-action-color);
 
 }
 
 .turn-menu__button--toggle-history {
   position: absolute;
-  top: 0;
+  top: 0.5em;
   left: 50%;
   transform: translateX(-50%);
-
-  border-top: none;
 }
