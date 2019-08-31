@@ -59,7 +59,7 @@ window.addEventListener('load', async () => {
     IN_GAME_MENU.hidden = !IN_GAME_MENU.hidden;
   });
 
-  if (document.fullscreenEnabled && SEARCH_PARAMS.get('mode') !== 'standalone') {
+  if (document.fullscreenEnabled) {
 
     if (document.fullscreenElement !== null) {
       FULL_SCREEN_ACTIVATION_BUTTON.hidden = true;

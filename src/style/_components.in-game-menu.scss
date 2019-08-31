@@ -71,3 +71,9 @@
 
   z-index: $z-index--above-modal-buttons;
 }
+
+@media (display-mode: fullscreen), (display-mode: standalone) {
+  .button--full-screen-toggle {
+    display: none;
+  }
+}
