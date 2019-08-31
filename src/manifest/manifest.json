@@ -12,5 +12,6 @@
   "scope": "/",
   "display": "fullscreen",
   "background_color": "#483542",
-  "theme_color": "#483542"
+  "theme_color": "#483542",
+  "orientation": "landscape"
 }
