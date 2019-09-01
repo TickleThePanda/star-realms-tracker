@@ -23,4 +23,7 @@ export class GameStateRepo {
     return GameJSON.parse(localStorage.getItem(this.ref));
   }
 
+  clear() {
+    localStorage.removeItem(this.ref);
+  }
 }

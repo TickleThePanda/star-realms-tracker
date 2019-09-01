@@ -3,6 +3,8 @@
   grid-template-rows: min-content auto;
 
   font-size: 3.5vmin;
+
+  overflow-y: auto;
 }
 
 .start-form {
@@ -30,4 +32,26 @@ h1 {
   font-size: 1.5em;
 
   margin: 1em;
+}
+
+.install-info, .install-event-outcome {
+  box-sizing: content-box;
+
+  display: flex;
+  grid-gap: 1em;
+
+  max-width: 16em;
+
+  margin-top: 2em;
+
+  justify-self: center;
+
+  font-size: 0.8em;
+}
+
+.install-info button {
+  justify-self: center;
+  margin-top: 0;
+  margin-left: 1em;
+  align-self: center;
 }

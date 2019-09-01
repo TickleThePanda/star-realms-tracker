@@ -68,6 +68,7 @@ window.addEventListener('load', async () => {
 
   document.getElementById('in-game-menu__new-game').addEventListener('click', event => {
     controller.cleanup();
+    gameStateRepo.clear();
     game = null;
     controller = null;
 
@@ -98,5 +99,34 @@ window.addEventListener('load', async () => {
     FULL_SCREEN_ACTIVATION_BUTTON.hidden = true;
   }
 
+  let promptEvent : BeforeInstallPromptEvent = null;
+
+  window.addEventListener('beforeinstallprompt', (event) => {
+    if (promptEvent === null) {
+      document.getElementById('install-section').hidden = false;
+      promptEvent = <BeforeInstallPromptEvent> event;
+    }
+  });
+
+  document.getElementById('install-app-button').addEventListener('click', async () => {
+    try {
+      promptEvent.prompt();
+
+      const choice = await promptEvent.userChoice;
+
+      if (choice.outcome === 'accepted') {
+        document.getElementById('install-section').hidden = true;
+        document.getElementById('install-event-outcome').hidden = false;
+        document.getElementById('install-event-outcome').innerHTML
+          = "Thank you for installing the app. You should be able to find it on your device now.";
+      } else {
+        document.getElementById('install-section').hidden = true;
+        document.getElementById('install-event-outcome').hidden = false;
+        document.getElementById('install-event-outcome').innerHTML
+          = "You declined the install pompt. If you still wish to install the app, please refresh the page.";
+      }
+    } catch (ignored) {}
+
+  })
 
 });
