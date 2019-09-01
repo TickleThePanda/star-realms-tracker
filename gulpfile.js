@@ -24,7 +24,7 @@ function js() {
 
   const tasks = files.map(file => {
     return browserify({entries: file.srcFile})
-      .plugin(tsify, { target: 'ES6' })
+      .plugin(tsify)
       .bundle()
       .pipe(source(file.destFile))
       .pipe(dest('site'));
