@@ -79,7 +79,7 @@ export class PlayerControllerElement extends HTMLElement {
 
     if (this._historyHidden === true) {
       this.HISTORY_NEXT_BUTTON.hidden = true;
-      this.HISTORY_PREV_BUTTON.hidden = true;  
+      this.HISTORY_PREV_BUTTON.hidden = true;
     } else {
       if (this._turn === 0) {
         this.HISTORY_PREV_BUTTON.hidden = true;
@@ -96,7 +96,7 @@ export class PlayerControllerElement extends HTMLElement {
   }
 
   private updateHistoryView() {
-    const historyElements : HTMLElement[] = this.getHistoryElements();   
+    const historyElements : HTMLElement[] = this.getHistoryElements();
     const turnToShow = historyElements[this._turn];
 
     turnToShow.scrollIntoView({
@@ -141,7 +141,7 @@ export class PlayerControllerElement extends HTMLElement {
     }
     if (listener === 'history-next') {
       this.HISTORY_NEXT_BUTTON.addEventListener('click', f);
-      return; 
+      return;
     }
     if (listener === 'history-prev') {
       this.HISTORY_PREV_BUTTON.addEventListener('click', f);

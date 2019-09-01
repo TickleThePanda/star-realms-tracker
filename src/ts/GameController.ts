@@ -64,7 +64,8 @@ export class GameController {
 
     window.addEventListener('resize', () => {
       this.triggerHistoryUpdate = true;
-    })
+    });
+
   }
   updateView() {
 
