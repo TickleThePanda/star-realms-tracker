@@ -71,11 +71,14 @@ h1 {
 .start-form_n-players-item-wrapper {
   height: 2em;
   display: flex;
+  margin-left: 0.5em;
 
   input[type="radio"] {
     margin: 0;
     margin-top: auto;
     margin-bottom: auto;
+    width: 0.6em;
+    height: 0.6em;
   }
 
   label {
