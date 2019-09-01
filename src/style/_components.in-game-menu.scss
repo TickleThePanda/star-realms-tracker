@@ -42,12 +42,9 @@
     grid-row: auto;
 
     &--new-game {
-      align-self: end;
+      align-self: center;
     }
 
-    &--rematch {
-      align-self: start;
-    }
   }
 }
 
