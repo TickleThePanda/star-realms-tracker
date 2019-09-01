@@ -4,6 +4,10 @@ function getPlayerTemplateContent() : DocumentFragment {
   return (<HTMLTemplateElement> document.getElementById('player-controller')).content;
 }
 
+function formatValue(n: number): string {
+  return "+" + n;
+}
+
 export class PlayerControllerElement extends HTMLElement {
 
   private _historyHidden: boolean;
@@ -40,7 +44,7 @@ export class PlayerControllerElement extends HTMLElement {
   setAuthorityDelta(authority: number) {
     const element = this.shadowRoot.querySelector('#authority-delta');
     const currentValue = element.innerHTML;
-    const newValue = authority.toString();
+    const newValue = formatValue(authority);
     if (currentValue !== newValue) {
       element.innerHTML = newValue;
       if (authority === 0) {
@@ -48,7 +52,7 @@ export class PlayerControllerElement extends HTMLElement {
         element.classList.remove('decrease');
         return;
       } else if (authority > 0) {
-        element.innerHTML = "+" + newValue;
+        element.innerHTML = newValue;
         element.classList.add('increase');
       } else {
         element.innerHTML = newValue;
