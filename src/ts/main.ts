@@ -1,10 +1,12 @@
 import { Game } from './Game';
+import { ViewState } from './ViewState';
 
 import { PlayerControllerElement } from './PlayerControllerElement';
 import { PlayerHistoryElement } from './PlayerHistoryElement';
 
 import { GameController } from './GameController';
 import { GameStateRepo } from './GameStateRepo';
+import { ViewStateRepo } from './ViewStateRepo';
 
 window.customElements.define('player-controller', PlayerControllerElement);
 window.customElements.define('player-history', PlayerHistoryElement);
@@ -25,18 +27,26 @@ window.addEventListener('load', async () => {
 
   let game: Game = null;
   let controller: GameController = null;
+  let viewState: ViewState = null;
 
   START_PAGE.hidden = false;
 
   const gameStateRepo = new GameStateRepo('game');
+  const viewStateRepo = new ViewStateRepo('view-state');
 
   function initGame() {
-    controller = new GameController(game, gameStateRepo);
+    controller = new GameController(game, viewState, gameStateRepo, viewStateRepo);
 
     controller.start();
 
     START_PAGE.hidden = true;
     GAME_PAGE.hidden = false;
+  }
+
+  if (viewStateRepo.exists()) {
+    viewState = viewStateRepo.load();
+  } else {
+    viewState = new ViewState();
   }
 
   if (gameStateRepo.exists()) {

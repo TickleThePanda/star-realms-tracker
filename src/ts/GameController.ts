@@ -1,6 +1,10 @@
 import { Turn } from './Turn';
 import { Game } from './Game';
 
+import { ViewState } from './ViewState';
+
+import { ViewStateRepo } from './ViewStateRepo';
+
 import { GameStateRepo } from './GameStateRepo';
 
 import { PlayerControllerElement } from './PlayerControllerElement';
@@ -17,17 +21,26 @@ export class GameController {
   private renderedTurns: Turn[] = [];
   private turnHistoryIndex = 0;
   private triggerHistoryUpdate = false;
-  private historyHiddenPrev = undefined;
-  private historyHidden = true;
+  private showHistoryPrev = undefined;
 
   private animationRequestId = null;
 
+  private readonly viewState : ViewState;
+  private readonly viewStateRepo : ViewStateRepo;
+
   constructor(
     game: Game,
-    gameStateRepo: GameStateRepo
+    viewState: ViewState,
+    gameStateRepo: GameStateRepo,
+    viewStateRepo: ViewStateRepo
   ) {
 
+    this.viewState = viewState;
+    this.viewStateRepo = viewStateRepo;
+
     this._game = game;
+
+    gameStateRepo.save(game);
 
     this.turnHistoryIndex = game.turns.length - 1;
 
@@ -64,11 +77,12 @@ export class GameController {
     this.NEXT_TURN_BUTTON.addEventListener('click', () => {
       game.completeCurrentTurn();
       this.turnHistoryIndex = game.turns.length - 1;
-        gameStateRepo.save(game);
+      gameStateRepo.save(game);
     });
 
     this.HISTORY_TOGGLE_BUTTON.addEventListener('click', () => {
-      this.historyHidden = !this.historyHidden;
+      this.viewState.showHistory = !this.viewState.showHistory;
+      viewStateRepo.save(viewState);
     });
 
     window.addEventListener('resize', () => {
@@ -111,19 +125,18 @@ export class GameController {
       this.NEXT_TURN_BUTTON.hidden = true;
     }
 
-    if (this.historyHiddenPrev !== this.historyHidden || this.triggerHistoryUpdate) {
+    if (this.showHistoryPrev === this.viewState.showHistory || this.triggerHistoryUpdate) {
       for (let i = 0; i < this._game.nPlayers; i++) {
         const element: PlayerControllerElement = this._playerElements[i];
-        element.historyHidden = this.historyHidden;
+        element.historyHidden = !this.viewState.showHistory;
       }
-      if (this.historyHidden) {
+      if (!this.showHistoryPrev) {
         this.HISTORY_TOGGLE_BUTTON.innerHTML = 'Show history';
       }
       else {
         this.HISTORY_TOGGLE_BUTTON.innerHTML = 'Hide history';
       }
-      this.historyHiddenPrev = this.historyHidden;
-      this.triggerHistoryUpdate = false;
+      this.showHistoryPrev = this.viewState.showHistory;
     }
 
     for (let i = 0; i < this._game.nPlayers; i++) {
