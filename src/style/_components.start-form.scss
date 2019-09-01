@@ -55,3 +55,26 @@ h1 {
   margin-left: 1em;
   align-self: center;
 }
+
+.start-form__n-players-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.start-form_n-players-item-wrapper {
+  height: 2em;
+  display: flex;
+
+  input[type="radio"] {
+    display: inline;
+    margin: 0;
+    margin: auto;
+  }
+
+  label {
+    margin: auto;
+    padding: 0.25em;
+    margin-right: 0.5em;
+  }
+}

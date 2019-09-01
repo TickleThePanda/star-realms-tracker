@@ -260,11 +260,37 @@
       <article id="page__start" class="page page__start" hidden>
         <h1>Star Realms Authority Tracker</h1>
         <form id="start-form" class="start-form">
-          <label for="start-form__players">Players</label>
-          <input type="number" id="start-form__players" value="2" name="players">
+          <h2>Players</h2>
+          <div class="start-form__n-players-wrapper">
+            <div class="start-form_n-players-item-wrapper">
+              <input type="radio" id="players-n-1" required name="players" value="1">
+              <label for="players-n-1" aria-label="1 Players">1</label>
+            </div>
+            <div class="start-form_n-players-item-wrapper">
+              <input type="radio" id="players-n-2" required name="players" value="2">
+              <label for="players-n-2" aria-label="2 Players">2</label>
+            </div>
+            <div class="start-form_n-players-item-wrapper">
+              <input type="radio" id="players-n-3" required name="players" value="3">
+              <label for="players-n-3" aria-label="3 Players">3</label>
+            </div>
+            <div class="start-form_n-players-item-wrapper">
+              <input type="radio" id="players-n-4" required name="players" value="4">
+              <label for="players-n-4" aria-label="4 Players">4</label>
+            </div>
+            <div class="start-form_n-players-item-wrapper">
+              <input type="radio" id="players-n-5" required name="players" value="5">
+              <label for="players-n-5" aria-label="5 Players">5</label>
+            </div>
+            <div class="start-form_n-players-item-wrapper">
+              <input type="radio" id="players-n-6" required name="players" value="6">
+              <label for="players-n-6" aria-label="6 Players">6</label>
+            </div>
+
+          </div>
 
           <label for="start-form__authority">Authority</label>
-          <input type="number" id="start-form__authority" value="50" name="authority">
+          <input type="number" id="start-form__authority" required value="50" name="authority">
 
           <button id="start-form__new-game" class="button--primary">Start new game</button>
 
