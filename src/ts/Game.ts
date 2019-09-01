@@ -35,7 +35,4 @@ export class Game {
     return this._turns.slice();
   }
 
-  on(event: string, f: (turn: Turn) => void) {
-    
-  }
 }
