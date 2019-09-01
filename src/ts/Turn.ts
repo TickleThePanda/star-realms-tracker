@@ -1,28 +1,32 @@
 import { CurrentTurn } from './CurrentTurn';
+import { jsonObject, jsonArrayMember } from 'typedjson';
 
-export interface ITurn {
+@jsonObject({
+    initializer: () => Object.create(Turn.prototype)
+})
+export class Turn {
+
+  @jsonArrayMember(Number)
   readonly deltas: readonly number[];
-  readonly authority: readonly number[];
-}
-
-export class Turn implements ITurn {
-  
-  readonly deltas: readonly number[];
+  @jsonArrayMember(Number)
   readonly authority: readonly number[];
 
-  constructor(prevTurn : Turn, currentTurn: CurrentTurn) {
-    this.deltas = currentTurn.deltas;
-    this.authority = prevTurn.authority.map((e, i) => e + currentTurn.deltas[i]);
+  constructor(deltas: readonly number[], authority: readonly number[]) {
+    this.deltas = deltas;
+    this.authority = authority;
   }
-}
 
-export class StartTurn implements ITurn {
+  static createFromState(prevTurn: Turn, currentTurn: CurrentTurn): Turn {
+    const deltas = currentTurn.deltas;
+    const authority = prevTurn.authority.map((e, i) => e + currentTurn.deltas[i]);
 
-  readonly deltas: readonly number[];
-  readonly authority: readonly number[];
+    return new Turn(deltas, authority);
+  }
 
-  constructor(nPlayers: number, startingAuthority: number) {
-    this.deltas = new Array<number>(nPlayers).fill(0);
-    this.authority = new Array<number>(nPlayers).fill(startingAuthority);
+  static createStartTurn(nPlayers: number, startingAuthority: number): Turn {
+    const deltas = new Array<number>(nPlayers).fill(0);
+    const authority = new Array<number>(nPlayers).fill(startingAuthority);
+
+    return new Turn(deltas, authority);
   }
 }

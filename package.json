@@ -19,7 +19,9 @@
     "url": "https://github.com/TickleThePanda/star-realms-health-tracker/issues"
   },
   "homepage": "https://github.com/TickleThePanda/star-realms-health-tracker#readme",
-  "dependencies": {},
+  "dependencies": {
+    "typedjson": "^1.4.0"
+  },
   "devDependencies": {
     "browserify": "^16.5.0",
     "concurrently": "^4.1.2",

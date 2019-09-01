@@ -1,6 +1,8 @@
 import { Turn } from './Turn';
 import { Game } from './Game';
 
+import { GameStateRepo } from './GameStateRepo';
+
 import { PlayerControllerElement } from './PlayerControllerElement';
 import { PlayerHistoryElement } from './PlayerHistoryElement';
 
@@ -20,10 +22,14 @@ export class GameController {
 
   private animationRequestId = null;
 
-  constructor(game: Game) {
-    const gameController = this;
+  constructor(
+    game: Game,
+    gameStateRepo: GameStateRepo
+  ) {
 
     this._game = game;
+
+    this.turnHistoryIndex = game.turns.length - 1;
 
     while (this.PLAYER_CONTAINER.hasChildNodes()) {
       this.PLAYER_CONTAINER.removeChild(this.PLAYER_CONTAINER.lastChild);
@@ -38,10 +44,12 @@ export class GameController {
 
       playerElement.addEventListener('increase-authority', () => {
         game.currentTurn.changePlayerAuthorityDeltaByDelta(i, 1);
+        gameStateRepo.save(game);
       });
 
       playerElement.addEventListener('decrease-authority', () => {
         game.currentTurn.changePlayerAuthorityDeltaByDelta(i, -1);
+        gameStateRepo.save(game);
       });
 
       playerElement.addEventListener('history-next', () => {
@@ -56,6 +64,7 @@ export class GameController {
     this.NEXT_TURN_BUTTON.addEventListener('click', () => {
       game.completeCurrentTurn();
       this.turnHistoryIndex = game.turns.length - 1;
+        gameStateRepo.save(game);
     });
 
     this.HISTORY_TOGGLE_BUTTON.addEventListener('click', () => {
@@ -86,8 +95,12 @@ export class GameController {
           historyElement.setAuthority(turn.authority[i]);
           historyElement.setAuthorityDelta(turn.deltas[i]);
           element.addHistory(historyElement);
-          element.historyIndex = this._game.turns.length - 1;
         }
+      }
+      for (let i = 0; i < this._game.nPlayers; i++) {
+          const element: PlayerControllerElement = this._playerElements[i];
+          element.historyIndex = this._game.turns.length - 1;
+          this.triggerHistoryUpdate = true;
       }
       this.renderedTurns = this._game.turns.slice();
     }

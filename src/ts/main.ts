@@ -4,7 +4,7 @@ import { PlayerControllerElement } from './PlayerControllerElement';
 import { PlayerHistoryElement } from './PlayerHistoryElement';
 
 import { GameController } from './GameController';
-import { visitFunctionBody } from 'typescript';
+import { GameStateRepo } from './GameStateRepo';
 
 window.customElements.define('player-controller', PlayerControllerElement);
 window.customElements.define('player-history', PlayerHistoryElement);
@@ -28,6 +28,22 @@ window.addEventListener('load', async () => {
 
   START_PAGE.hidden = false;
 
+  const gameStateRepo = new GameStateRepo('game');
+
+  function initGame() {
+    controller = new GameController(game, gameStateRepo);
+
+    controller.start();
+
+    START_PAGE.hidden = true;
+    GAME_PAGE.hidden = false;
+  }
+
+  if (gameStateRepo.exists()) {
+    game = gameStateRepo.load();
+    initGame();
+  }
+
   document.getElementById('start-form__new-game').addEventListener('click', event => {
     const newGameForm = <HTMLFormElement> document.getElementById('start-form');
     const players = parseInt(newGameForm.elements["players"].value);
@@ -35,12 +51,7 @@ window.addEventListener('load', async () => {
 
     game = new Game(players, authority);
 
-    controller = new GameController(game);
-
-    controller.start();
-
-    START_PAGE.hidden = true;
-    GAME_PAGE.hidden = false;
+    initGame()
 
     event.preventDefault();
   });

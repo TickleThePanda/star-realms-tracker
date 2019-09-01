@@ -1,14 +1,21 @@
-import { ITurn, Turn, StartTurn } from './Turn';
+import { jsonObject, jsonMember, jsonArrayMember } from 'typedjson';
+
+import { Turn } from './Turn';
 import { CurrentTurn } from './CurrentTurn';
 
+
+@jsonObject
 export class Game {
-  private readonly _turns: ITurn[];
+  @jsonArrayMember(Turn)
+  private readonly _turns: Turn[];
+  @jsonMember({ constructor: Number})
   readonly nPlayers: number;
+  @jsonMember({ constructor: CurrentTurn })
   private _currentTurn: CurrentTurn;
 
-  constructor(nPlayers: number, startingAuthority: number) {
+  constructor(nPlayers?: number, startingAuthority?: number) {
     this.nPlayers = nPlayers;
-    this._turns = [new StartTurn(nPlayers, startingAuthority)];
+    this._turns = [Turn.createStartTurn(nPlayers, startingAuthority)];
     this._currentTurn = new CurrentTurn(this);
   }
 
@@ -28,7 +35,7 @@ export class Game {
   }
 
   get state(): Turn {
-    return new Turn(this.turns[this._turns.length - 1], this.currentTurn);
+    return Turn.createFromState(this.turns[this._turns.length - 1], this.currentTurn);
   }
 
   get turns(): readonly Turn[] {
