@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/TickleThePanda/star-realms-health-tracker#readme",
   "dependencies": {
-    "typedjson": "^1.4.0"
+    "typedjson": "^1.8.0"
   },
   "devDependencies": {
     "browserify": "^16.5.0",
