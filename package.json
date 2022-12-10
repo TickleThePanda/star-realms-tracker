@@ -29,7 +29,7 @@
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-watch": "^5.0.1",
-    "http-server": "^0.11.1",
+    "http-server": "^0.11.2",
     "tsify": "^4.0.1",
     "typescript": "^3.5.3",
     "vinyl-source-stream": "^2.0.0"
